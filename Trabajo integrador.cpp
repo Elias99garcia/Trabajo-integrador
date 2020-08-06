@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<conio.h>
 #define MAX 1000
@@ -23,21 +22,23 @@ int arreglo3[100],tam3;
 int arreglo4[100],tam4;
 int n ;
 
-
+//Programa principal
 int main(){
 	
 	int opc;
 	float extra;
 	
-	cout<<"\tBienvenido al programa, cargue su vector segun sus caracteristicas:"<<endl;
-	cout<<"1. Intercambio o burbuja mejorada"<<endl;
-	cout<<"2. Insercion o metodo de la baraja "<<endl;
-	cout<<"3. Seleccion o metodo sencillo  "<<endl;
-	cout<<"4. Rapido o QuickSort   "<<endl;
-	cout<<"5. Por Mezcla o MergeSor  "<<endl;
-	
-	cout<<"6. Salir"<<endl;
-	cout<<"Opcion: "; 
+	//Menu
+	cout<<"\n\t********************************************************************"<<endl;
+	cout<<"\t*Bienvenido al programa, cargue su vector segun sus caracteristicas*"<<endl;
+	cout<<"\t*1. Intercambio o burbuja mejorada                                 *"<<endl;
+	cout<<"\t*2. Insercion o metodo de la baraja                                *"<<endl;
+	cout<<"\t*3. Seleccion o metodo sencillo                                    *"<<endl;
+	cout<<"\t*4. Rapido o QuickSort                                             *"<<endl;
+	cout<<"\t*5. Por Mezcla o MergeSor                                          *"<<endl;
+	cout<<"\t*6. Salir                                                          *"<<endl;
+	cout<<"\t********************************************************************"<<endl;
+	cout<<"\nOpcion: "; 
 	cin>>opc;
 	
 	switch(opc){
