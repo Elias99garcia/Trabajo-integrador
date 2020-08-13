@@ -1,18 +1,30 @@
+/*TRABAJO INTEGRADOR PRIMER CUATRIMESTRE (ORDENAMIENTO)
+FACULTAD REGIONAL TUCUMAN
+ALUMNOS : GIMENEZ LEANDRO NAHUEL, GARCIA JOSE ELIAS
+*/
+
 #include<iostream>
 #include<conio.h>
 #define MAX 1000
 using namespace std;
 
-//Prototipo de funciones
+//Prototipo de funciones DATOS
 void pedirDatos();
 void pedirDatos2();
 void pedirDatos3();
 void pedirDatos4();
+//Prototipo de funciones ORDENAMIENTOS
 int vecBurbuja(int arreglo1[],int);
 int vecInsercion(int arreglo2[],int);
 int vecSencillo(int arreglo3[],int);
 void QuickSort(int [] , int );
 void Imprimir(int [] , int);
+//Ordenamiento MERGESORT
+void intercambio(int &a, int &b);
+void muestra(int *array, int size);
+void merge(int *array, int l, int m, int r);
+void mergeSort(int *array, int l, int r);
+
 
 
 //Variables globales
@@ -20,6 +32,7 @@ int arreglo1[100],tam1;
 int arreglo2[100],tam2;
 int arreglo3[100],tam3;
 int arreglo4[100],tam4;
+int arreglo5[100],tam5;
 int n ;
 
 //Programa principal
@@ -55,28 +68,41 @@ int main(){
 		case 3:
 			   pedirDatos3();
 			   vecSencillo(arreglo3,tam3);
+			   break;
 		case 4:
-			   cout<<"Ingrese el total de numeros: "<<endl;
+			   cout<<"Digite el numero de elementos del vector:  "<<endl;
     cin>>n;
     int a[n];
     for(int i=0;i<n;i++){
 
-        cout<<"Ingresa el elemento numero "<<i+1<<" : "<<endl;
+        cout<<" . Digite un numero: "<<i+1<<" : "<<endl;
         cin>>a[i];
-
     }
-
     QuickSort(a,n);
     Imprimir(a,n);
     break;
-
-			   
-		
+       case 5:
+       	cout << "Digite el numero de elementos del vector: ";
+   cin >> n;
+   int arr[n];     //Esto crea un vector con un numero determinado de elementos
+   cout << ". Digite un numero:" << endl;
+   for(int i = 0; i<n; i++) {
+      cin >> arr[i];
+   }
+   cout << "VECTOR ANTES DE ORDENAR: ";
+   muestra(arr, n);
+   mergeSort(arr, 0, n-1);     //(n-1) para el ultimo indice
+   cout << "VECTOR DESPUES DE ORDENAR: ";
+   muestra(arr, n);
+    break;
+			   		
 	}
 	getch();
 	return 0;
 }
 
+
+//FUNCIONES
 void pedirDatos(){
 	cout<<"Digite el numero de elementos del vector: ";
 	cin>>tam1;
@@ -282,5 +308,57 @@ void Imprimir(int a[] , int n){
 
 
 }
+//ORDENAMIENTO MERGESORT
 
+void intercambio(int &a, int &b) {     //intercambia el contenido de A y B
+   int temp;
+   temp = a;
+   a = b;
+   b = temp;
+}
+void muestra(int *array, int size) {
+   for(int i = 0; i<size; i++)
+      cout << array[i] << " ";
+   cout << endl;
+}
+void merge(int *array, int l, int m, int r) {
+   int i, j, k, nl, nr;
+   nl = m-l+1; nr = r-m;
+   int larr[nl], rarr[nr];
+
+   for(i = 0; i<nl; i++)
+      larr[i] = array[l+i];
+   for(j = 0; j<nr; j++)
+      rarr[j] = array[m+1+j];
+   i = 0; j = 0; k = l;
+   //TRANSFIERE LOS DATOS
+   while(i < nl && j<nr) {
+      if(larr[i] <= rarr[j]) {
+         array[k] = larr[i];
+         i++;
+      }else{
+         array[k] = rarr[j];
+         j++;
+      }
+      k++;
+   }
+   while(i<nl) {       //Elemento extra en la matriz izquierda
+      array[k] = larr[i];
+      i++; k++;
+   }
+   while(j<nr) {     //Elemento extra en la matriz derecha
+      array[k] = rarr[j];
+      j++; k++;
+   }
+}
+void mergeSort(int *array, int l, int r) {
+   int m;
+   if(l < r) {
+      int m = l+(r-l)/2;
+      //Ordena las matrices
+      mergeSort(array, l, m);
+      mergeSort(array, m+1, r);
+      merge(array, l, m, r);
+   }
+}
 
